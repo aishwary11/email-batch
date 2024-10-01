@@ -4,7 +4,7 @@ import sendMail from "./mail";
 const emailQueue = new Queue("email-queue", { redis: { host: "localhost", port: 6379 } });
 emailQueue.process(async (job) => {
   const info = await sendMail(job.data.from, job.data.to, job.data.subject, job.data.text);
-  console.log("Message sent: %s", info.messageId);
+  console.log("Message sent: %s", info);
   return info;
 });
 
